@@ -1,0 +1,43 @@
+{% extends 'main/Hospital_admin.html' %}
+{% load static  %}
+{% block registerorapp  %}
+
+<div class = 'container'>
+    <table class="table">
+        <thead class="bg-dark">
+          <tr style="color:white ;">
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Degree Info</th>
+            <th scope="col">Hospital Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in all_data %}
+            <tr>
+                <th scope="row">{{i.name}}</th>
+                <td scope="row">{{i.depart}}</td>
+                <td scope="row">{{i.degree}}</td>
+                
+                <td scope="row">{{i.hos_name}}</td>
+                
+                <td>
+                  
+                    <button type="button" class="btn btn-dark"><a href = "update/{{ i.id }}"  style='text-decoration: none;' >Update</a></button>
+                  
+                  
+                    <button type="button" class="btn btn-danger" ><a href = "deleteDoc/{{ i.id }}" style='text-decoration: none;'>Delete</a></button>
+                  
+                  
+                </td>
+               
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'main/patient.html' %}
+
+{% load static %}
+
+{% block patient %}
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row gx-5">
+            
+            <div class="col-lg-6">
+                <div class="bg-light text-center rounded p-5">
+                    <h1 class="mb-4">Update  Your Info</h1>
+                    <form method = 'post' action = "update_pat/{{users.id}}">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            
+                            
+                            
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" value = "{{users.first_name}}" placeholder="first_name" style="height: 55px;" name = 'fname' id = 'fname'>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" value = "{{users.last_name}}" placeholder="last_name" style="height: 55px;" name = 'lname' id = 'lname'>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" value = "{{users.email}}" placeholder="email" style="height: 55px;" name = 'email' id = 'email'>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" value = "{{addi.phone_no}}" placeholder="phone" style="height: 55px;" name = 'phone' id = 'phone'>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Update</button>
+                            </div>
+                            
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

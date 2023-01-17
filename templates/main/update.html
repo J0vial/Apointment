@@ -1,0 +1,55 @@
+{% extends 'main/home_temp.html' %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row gx-5">
+            
+            <div class="col-lg-6">
+                <div class="bg-light text-center rounded p-5">
+                    <h1 class="mb-4">Update  a Doctor</h1>
+                    <form method = 'post' action = "updateDoc/{{ mymember.id }}">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <select class="form-select bg-white border-0" value = "{{ mymember.depart }}" style="height: 55px;" id='department' name = 'department'>
+                                    {% for i in department %}
+                                        <option >{{i}}</option>
+                                        
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <select class="form-select bg-white border-0" value = "{{ mymember.hos_name_id.hos_name }}"style="height: 55px;" id = 'hospital' name = 'hospital'>
+                                    {% for i in models %}
+                                        <option >{{i}}</option>
+                                        
+                                    {% endfor %}
+                                    
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" value = "{{ mymember.name }}" placeholder="Doctor Name" style="height: 55px;" name = 'name' id = 'name'>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" value = "{{ mymember.degree  }}" placeholder="degree" style="height: 55px;" name = 'degree' id = 'degree'>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="date" id="date" data-target-input="nearest">
+                                    <input type="text" value = "{{ mymember.date  }}"
+                                        class="form-control bg-white border-0 datetimepicker-input"
+                                        placeholder="Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name = 'date' id = 'date'>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

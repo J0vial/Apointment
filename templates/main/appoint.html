@@ -1,0 +1,124 @@
+{% extends 'main/patient.html' %}
+{% load static %}
+
+{% block patient%}
+
+
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class = 'container'>
+                    <form action="" method="get">
+                        <div class="col-12 col-sm-6">
+                            
+                            
+                            <input type="text" name = 'all'>
+                                
+                            
+                        </div>
+                        <button  type="submit">Search</button>
+                    </form>
+                    <table class="table">
+                        <thead class="bg-dark">
+                          <tr style="color:white ;">
+                            <th scope="col">Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Degree Info</th>
+                            <th scope="col">Hospital Name</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in doctor%}
+                            <tr>
+                                <th scope="row">{{i.name}}</th>
+                                <td scope="row">{{i.depart}}</td>
+                                <td scope="row">{{i.degree}}</td>
+                                
+                                <td scope="row">{{i.hos_name}}</td>              
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                </div>
+                
+            </div>
+            
+            
+            
+            
+            <div class="col-lg-6">
+                {% if messages %}
+                <div >
+                
+                    {% for message in messages%}
+                    <script>
+                        window.onload = function(){
+                        alert("{{message}}")
+                        }
+
+                    </script>
+                {% endfor %}
+                </div>
+                {% endif %}
+            
+                <div class="bg-light text-center rounded p-5">
+                    <h1 class="mb-4">Book An Appointment</h1>
+                    <form method ='post'>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <input type="hidden" name="user" value='{{user.id}}'>
+                            
+                            <div class="col-12 col-sm-6">
+                            
+                                <select  class="form-select bg-white border-0" style="height: 55px;"  name = 'hos' >
+                                    <option selected disabled ='true'>--Select Hospital--</option>
+                                    {% for hos in hospital  %}
+                                    <option value="{{hos.id}}">{{hos.hos_name}}</option>
+                                    {% endfor %}
+                                    <button type="submit">Search</button>
+                            
+                                </select>
+                            </div>
+                        
+                            <div class="col-12 col-sm-6">
+                                <select class="form-select bg-white border-0" style="height: 55px;"name = 'dept'>
+                                    <option selected disabled ='true'>---Select Department---</option>
+                                    {% for all in department %}
+                                    <option  value={{all}}>{{all}}</option>
+                                    {% endfor %}
+                            
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <select  class="form-select bg-white border-0" style="height: 55px;" name = 'doc'>
+                                    <option selected disabled ='true'>Select Doctor</option>
+                                    {% for doc in doctor %}
+                                    <option  value={{doc.id}}>{{doc.name}}</option>
+                                    {% endfor %}
+                                
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                <div class="date" id="date" data-target-input="nearest">
+                                    <input type="text"
+                                        class="form-control bg-white border-0 datetimepicker-input"
+                                        placeholder="Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name ='date'>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Make An Appointment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment End -->
+{% endblock %}

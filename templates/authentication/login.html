@@ -1,0 +1,62 @@
+
+{% extends 'authentication/index.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="main">
+
+    <section class="signup">
+        {% if user.is_authenticated %}
+            <div >
+                
+                {% for message in messages%}
+                <script>
+                    window.onload = function(){
+                    alert("{{message}}")
+                    }
+
+                </script>
+                {% endfor %}
+            </div>
+        {% endif %}
+            
+        <!-- <img src="images/signup-bg.jpg" alt=""> -->
+        <div class="container" style="padding-right: 400px; padding-left:100px; margin-left:23%;">
+            <div class="signup-content">
+                
+                
+                <form  method="post"  id="signup-form" class="signup-form">
+                    {% csrf_token %}
+                    <h2><b>Login</b></h2>
+                
+    
+                    
+                    <div class="form-group">
+                        {{login_form.username|as_crispy_field}}
+                        
+                    </div>
+
+                    <div class="form-group">
+                        {{login_form.password|as_crispy_field}}
+                    
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="submit" id="submit" class="form-submit" >
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <p> Dont have an account? <a href="{% url 'authentication:register' %}">Create an account</a>.</p>
+                
+
+                
+            </div>
+          
+        </div>
+      
+    </section>
+</div>
+
+{% endblock %}

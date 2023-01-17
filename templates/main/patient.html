@@ -1,0 +1,73 @@
+
+{% extends 'main/Home_temp.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid sticky-top bg-white shadow-sm mb-5">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+            <a href="#" class="navbar-brand">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-clinic-medical me-2"></i>Appointment</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="nav-item nav-link">Welcome {{user.first_name}}</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+   
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{% url 'main:patient' user.id %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url 'main:appoint' %}" class="nav-item nav-link">Make an Appointment</a>    
+                    <a href="{% url 'main:hos_doc_list' %}" class="nav-item nav-link">View Info about Hospital and Doctors</a> 
+                    <a href="{% url 'main:edit_info_patient' user.id %}" class="nav-item nav-link">Edit Info</a> 
+                    <a href="{% url 'authentication:logout' %}" class="nav-item nav-link">LogOut</a>
+                </div>
+            </div>
+        
+        </nav>
+    </div>
+</div>
+{% block patient %}
+<h1 class="mb-4" style = 'margin-left:40%'>Your Appointments</h1>
+<div class = 'container'>
+    <table class="table">
+        <thead class="bg-dark">
+          <tr style="color:white ;">
+            <th scope="col">Doctor Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Hospital Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Status</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in app %}
+            <tr>
+                <th scope="row">{{i.doctor}}</th>
+                <td scope="row">{{i.doctor.depart}}</td>
+                
+                <td scope="row">{{i.doctor.hos_name}}</td>
+                
+                <td scope="row">{{i.doctor.hos_name.location}}</td>
+                
+                <td scope="row">{{i.date}}</td>
+                <td scope="row">{{i.time}}</td>
+
+                <td scope="row">{{i.status}}</td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock  %}
+    
+{% endblock  %}
+
+
+
+
