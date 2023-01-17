@@ -120,10 +120,11 @@ def Hospital_admin_accp(request, pk):
     if request.method == "POST":
         time = request.POST["time"]
         saved = appointment.objects.get(id=pk)
+        hosp_name = doctor.objects.get(id=pk).hos_name
         saved.time = time
         saved.status = "accepted"
         saved.save()
-    return redirect(reverse("main:Hospital_admin"))
+    return redirect(reverse("main:Hospital_admin"),kwargs={'name': hosp_name})
 
 
 def Hospital_admin(request, name):
