@@ -123,7 +123,7 @@ def Hospital_admin_accp(request, pk):
         saved.time = time
         saved.status = "accepted"
         saved.save()
-    return HttpResponseRedirect(reverse("main:Hospital_admin"))
+    return redirect(reverse("main:Hospital_admin"))
 
 
 def Hospital_admin(request, name):
