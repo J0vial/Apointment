@@ -67,7 +67,7 @@
                     <td scope="row">{{i.date}}</td>
                     
                     <td scope="row">{{i.status}}</td>
-                    {% if i.time %}
+                    {% if i.status != 'Pending' %}
                         <td scope="row">{{i.time}}</td>
                         <td><button disabled="disabled" class="btn btn-success">accept</button></td>
                     {% else %}
