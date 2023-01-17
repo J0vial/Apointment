@@ -131,7 +131,7 @@ def Hospital_admin(request, name):
 
     context = {"app": query2}
 
-    return render(request, "main/Hospital_admin.html", context)
+    return render(request, "main/Hospital_admin.html/", context)
 
 
 def register_doc(request):

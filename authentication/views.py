@@ -68,7 +68,7 @@ def login_request(request):
                     if query == "Unregisterd":
                         return redirect(reverse("main:unregis_view"))
                     else:
-                        return redirect("main:Hospital_admin", str = hos_name)
+                        return redirect(reverse("main:Hospital_admin", kwargs={'name': hos_name}))
                 else:
                     return redirect("main:patient", pk=user_table[0]["id"])
 
